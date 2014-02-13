@@ -101,7 +101,7 @@ module OmniAuth
         else
           url = options[:callback_url] || super
         end
-        Rails.logger.warn "omniauth-facebook: callback_url: #{url}"
+        Rails.logger.info "omniauth-facebook: callback_url: #{url}"
         url
       end
 
