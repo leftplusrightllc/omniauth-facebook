@@ -85,7 +85,7 @@ module OmniAuth
           url << "?" unless url.match(/\?/)
           url << "&" unless url.match(/[\&\?]$/)
           url << query
-
+          
           redirect url
         else
           super
@@ -97,10 +97,12 @@ module OmniAuth
       #      https://github.com/facebook/php-sdk/blob/master/src/base_facebook.php#L348
       def callback_url
         if @authorization_code_from_signed_request
-          ''
+          url = ''
         else
-          options[:callback_url] || super
+          url = options[:callback_url] || super
         end
+        Rails.logger.warn "omniauth-facebook: callback_url: #{url}"
+        url
       end
 
       def access_token_options
